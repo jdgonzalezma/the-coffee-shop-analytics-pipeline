@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: databricks_tables
+    database: workspace 
+    schema: default
+    tables:
+      - name: coffee_shop_silver
+        description: "Tabla limpia y estandarizada con las transacciones de ventas de la cafetería."
