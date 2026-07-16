@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_stores
+    description: "Dimensión que contiene las sucursales únicas de la cafetería."
+    columns:
+      - name: store_id
+        description: "Llave primaria de la tienda."
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "Dimensión con el catálogo único de productos."
+    columns:
+      - name: product_id
+        description: "Llave primaria del producto."
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_sales
+    description: "Tabla de hechos con las métricas transaccionales de ventas."
+    columns:
+      - name: unique_row_id
+        description: "Llave primaria de cada registro de venta."
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        description: "Llave foránea para conectar con dim_stores."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stores')
+              field: store_id
+      - name: product_id
+        description: "Llave foránea para conectar con dim_products."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_id

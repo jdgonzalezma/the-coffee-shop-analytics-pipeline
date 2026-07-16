@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_coffee_shop_sales
+    description: "Capa de staging limpia para las ventas de la cafetería."
+    columns:
+      - name: unique_row_id
+        description: "Llave primaria de la tabla transaccional."
+        tests:
+          - unique
+          - not_null
